@@ -1,6 +1,7 @@
 import numpy
 import pandas
 import selenium
+import webdriver_manager
 import webdriver_manager.chrome
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -34,15 +35,6 @@ TASKS = {
 }
 
 
-def get_driver():
-    service = selenium.webdriver.ChromeService(
-        webdriver_manager.chrome.ChromeDriverManager().install()
-    )
-    options = selenium.webdriver.ChromeOptions()
-    options.add_argument('--headless')
-    return selenium.webdriver.Chrome(service=service, options=options)
-
-
 def find_elements(row, xpaths):
     for xpath in xpaths:
         if (tmp1 := row.find_elements(By.XPATH, xpath)):
@@ -50,7 +42,17 @@ def find_elements(row, xpaths):
 
 
 def main():
-    driver = get_driver()
+    service = selenium.webdriver.ChromeService(
+        webdriver_manager.chrome.ChromeDriverManager(
+            chrome_type=webdriver_manager.core.os_manager.ChromeType.BRAVE,
+            driver_version='137.0.7151.61',
+        ).install()
+    )
+    options = selenium.webdriver.ChromeOptions()
+    options.binary_location = '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser'
+    options.add_argument('--headless')
+    driver = selenium.webdriver.Chrome(service=service, options=options)
+
     for taskname, task in tqdm(TASKS.items()):
         df = pandas.DataFrame(columns=task['columns'])
         driver.get(f'https://www.shanghairanking.cn/rankings/{taskname}/{task["year"]}')
@@ -71,6 +73,7 @@ def main():
             )
         df.replace([numpy.nan, ''], '-', inplace=True)
         df.to_csv(f'{taskname}{task["year"]}.csv', index=False, encoding='utf-8')
+
     driver.quit()
 
 

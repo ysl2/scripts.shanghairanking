@@ -1,0 +1,17 @@
+[project]
+name = "shanghairanking"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "numpy>=2.2.6",
+    "pandas>=2.2.3",
+    "selenium>=4.33.0",
+    "tqdm>=4.67.1",
+    "webdriver-manager>=4.0.2",
+]
+
+[[tool.uv.index]]
+url = "https://mirrors.aliyun.com/pypi/simple"
+default = true
