@@ -9,5 +9,5 @@ python main.py
 
 ## 附件示例
 
-- `bcur2025.csv`: 中国大学排名
+- `bcur202510.csv`: 中国大学排名
 - `arwu2024.csv`: 世界大学排名
