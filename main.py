@@ -1,7 +1,7 @@
 import numpy
 import pandas
 import selenium
-import webdriver_manager
+# import webdriver_manager
 import webdriver_manager.chrome
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -44,12 +44,12 @@ def find_elements(row, xpaths):
 def main():
     service = selenium.webdriver.ChromeService(
         webdriver_manager.chrome.ChromeDriverManager(
-            chrome_type=webdriver_manager.core.os_manager.ChromeType.BRAVE,
-            driver_version='137.0.7151.61',
+            # chrome_type=webdriver_manager.core.os_manager.ChromeType.BRAVE,
+            # driver_version='137.0.7151.61',
         ).install()
     )
     options = selenium.webdriver.ChromeOptions()
-    options.binary_location = '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser'
+    # options.binary_location = '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser'
     options.add_argument('--headless')
     driver = selenium.webdriver.Chrome(service=service, options=options)
 
