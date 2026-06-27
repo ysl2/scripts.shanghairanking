@@ -12,7 +12,7 @@ from tqdm.auto import tqdm
 TIMEOUT = 10
 TASKS = {
     'bcur': {
-        'year': '202510',
+        'year': '202610',
         'columns': ['排名', '学校名称', '标签', '省市', '类型'],
         'xpathss': [
             ['./td[1]/div'],
